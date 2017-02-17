@@ -19,13 +19,19 @@ public class Cart {
         for(CartItem cartItem: cart){
             if(item.getId()==cartItem.getItemId()){
                 found = true;
-                cartItem.setQuantity(quantity);
+                if(quantity>0) {
+                    cartItem.setQuantity(quantity);
+                }else {
+                    cart.remove(cartItem);
+                }
                 break;
             }
         }
         if(!found){
-            CartItem cartItem = new CartItem(item, quantity);
-            cart.add(cartItem);
+            if(quantity>0) {
+                CartItem cartItem = new CartItem(item, quantity);
+                cart.add(cartItem);
+            }
         }
         calculateTotalPrice();
     }

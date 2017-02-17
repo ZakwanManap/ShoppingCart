@@ -31,6 +31,22 @@ public class CartController {
 
     }
 
+    @ApiOperation(value = "removeFromCart", nickname = "removeFromCart")
+    @RequestMapping(method = RequestMethod.GET, path="/removeFromCart", produces = "application/json")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Failure")})
+    public void removeFromCart(@RequestParam int id){
+        Item item = ItemController.getItem(id);
+        if(item!=null){
+            Cart.addItem(item, 0);
+        }
+
+    }
+
     @ApiOperation(value = "getTotalPrice", nickname = "getTotalPrice")
     @RequestMapping(method = RequestMethod.GET, path="/getTotalPrice", produces = "application/json")
     @ApiResponses(value = {

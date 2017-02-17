@@ -44,15 +44,7 @@ public class ItemController {
     }
 
     //for test purpose
-    @ApiOperation(value = "generateCatalog", nickname = "generateCatalog")
-    @RequestMapping(method = RequestMethod.GET, path="/generateCatalog", produces = "application/json")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Success"),
-            @ApiResponse(code = 401, message = "Unauthorized"),
-            @ApiResponse(code = 403, message = "Forbidden"),
-            @ApiResponse(code = 404, message = "Not Found"),
-            @ApiResponse(code = 500, message = "Failure")})
-    public void generateCatalog(){
+    public static void generateCatalog(){
         Item item;
         item = new Item("ayam", 10.99 );
         ItemModel.itemList.add(item);
